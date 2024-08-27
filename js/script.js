@@ -24,3 +24,19 @@ Consigli del giorno:
     // raccogliamo i numeri inseriti dall'utente
     // confrontiamo i numeri dell'utente con quelli generati random per vedere quali e quanti ne ha indovinati
     // stampare un messagio con il risultato
+
+
+//# preparation phase
+
+//recupero dal DOM gli elementi
+const timerField = document.getElementById('timer');
+const numbersCells = document.getElementById('random-nmb-field');
+const playButton = document.getElementById('play-btn');
+const userNumbersField = document.getElementById('user-numbers');
+const num1Field= document.getElementById('nmb-1');
+const num2Field= document.getElementById('nmb-2');
+const num3Field = document.getElementById('nmb-3');
+const num4Field = document.getElementById('nmb-4');
+const num5Field   = document.getElementById('nmb-5');
+const checkButton = document.getElementById('check-btn');
+const resultField = document.getElementById('');
