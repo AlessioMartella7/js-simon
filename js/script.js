@@ -41,9 +41,10 @@ const createCell = (content ='') => {
 
 const createRandomNumber = (max = 100) => {
     const numbers =[];
+    for(let i = 0; i < 5; i++) {
     const number = Math.floor(Math.random() * max ) ;
     //controlliamo che i numeri inseriti nell'array siano tutti diversi
-    if(!numbers.includes(number)) numbers.push(number);
+    if(!numbers.includes(number)) numbers.push(number);}
     return numbers;
 }
 
@@ -61,13 +62,14 @@ const num3Field = document.getElementById('nmb-3');
 const num4Field = document.getElementById('nmb-4');
 const num5Field   = document.getElementById('nmb-5');
 const checkButton = document.getElementById('check-btn');
-const resultField = document.getElementById('');
+const resultField = document.getElementById('result');
 
 //varibili globali
 let cell;
 let seconds = 5;
-let randomNumber;
 let userNumbers = [];
+let checkedNumbers = [];
+const randomNumber = createRandomNumber();
 
 //# Elaboration phase
 
@@ -75,10 +77,10 @@ let userNumbers = [];
 playButton.addEventListener('click', () => {
     // creiamo i riquadri per ospitare i numeri
     for(let i = 0; i < 5; i++ ){     
-    randomNumber = createRandomNumber();
-    cell = createCell(randomNumber);
-    numbersCells.appendChild(cell);
+        cell = createCell(randomNumber[i]);
+        numbersCells.appendChild(cell);
     }
+    console.log('randomNumb',randomNumber)
     // rendiamo visibili i numeri generati
     numbersCells.classList.remove('d-none')
     timerField.classList.remove('d-none')
@@ -100,7 +102,7 @@ playButton.addEventListener('click', () => {
     },1000 );
 
     // array numeri controllati
-    const checkedNumber = [];
+   
 
     // aggiungiamo un evento al form
     form.addEventListener ('submit', event => {
@@ -115,14 +117,20 @@ playButton.addEventListener('click', () => {
     //creiamo un array per ricevere i numeri dell'utente
     userNumbers.push(num1,num2,num3,num4,num5);
     
+   
     // confrontiamo i numeri dell'utente con quelli generati random per vedere quali e quanti ne ha indovinati
     for(let i = 0; i < randomNumber.length ; i++) {
         if(userNumbers.includes(randomNumber[i])) {
-            checkedNumber.push(randomNumber[i]);
+            checkedNumbers.push(randomNumber[i]);
+            
         }
-        console.log(checkedNumber);
-        console.log(randomNumber);
+        console.log(checkedNumbers);
+
     }
+    
+    resultField.innerText = `Hai indovinato ${checkedNumbers.length} numeri: ${checkedNumbers}`;
+    console.log('Numeri controllati:', checkedNumbers);
+    console.log('Numeri random:', randomNumber);
          
 })
 
