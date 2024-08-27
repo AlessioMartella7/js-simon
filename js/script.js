@@ -20,7 +20,7 @@ Consigli del giorno:
         //1 sparire i numeri precedentemente generati
         //2 apparire gli input per l'utente dove inserire i numeri
         //3 far sparire il bottone "play"
-// creiamo un secondo bottone per controllare il risultato
+// aggiungiamo un evento al form
     // raccogliamo i numeri inseriti dall'utente
     // confrontiamo i numeri dell'utente con quelli generati random per vedere quali e quanti ne ha indovinati
     // stampare un messagio con il risultato
@@ -54,7 +54,7 @@ const cpuField = document.getElementById('cpu-generated')
 const timerField = document.getElementById('timer');
 const numbersCells = document.getElementById('random-nmb-field');
 const playButton = document.getElementById('play-btn');
-const userNumbersField = document.getElementById('user-numbers');
+const form = document.getElementById('user-numbers');
 const num1Field= document.getElementById('nmb-1');
 const num2Field= document.getElementById('nmb-2');
 const num3Field = document.getElementById('nmb-3');
@@ -66,6 +66,8 @@ const resultField = document.getElementById('');
 //varibili globali
 let cell;
 let seconds = 5;
+let randomNumber;
+let userNumbers = [];
 
 //# Elaboration phase
 
@@ -73,8 +75,8 @@ let seconds = 5;
 playButton.addEventListener('click', () => {
     // creiamo i riquadri per ospitare i numeri
     for(let i = 0; i < 5; i++ ){     
-    const randomNumnber = createRandomNumber();
-    cell = createCell(randomNumnber);
+    randomNumber = createRandomNumber();
+    cell = createCell(randomNumber);
     numbersCells.appendChild(cell);
     }
     // rendiamo visibili i numeri generati
@@ -93,8 +95,37 @@ playButton.addEventListener('click', () => {
         cpuField.classList.add('d-none');
         
         //facciamo apparire il campo imput per l'utente e il bottone check
-        userNumbersField.classList.remove('d-none');
+        form.classList.remove('d-none');
     }
     },1000 );
 
+    // array numeri controllati
+    const checkedNumber = [];
+
+    // aggiungiamo un evento al form
+    form.addEventListener ('submit', event => {
+    event.preventDefault();
+    // raccogliamo i numeri inseriti dall'utente
+    const num1 = parseInt(num1Field.value);
+    const num2 = parseInt(num2Field.value);
+    const num3 = parseInt(num3Field.value);
+    const num4 = parseInt(num4Field.value);
+    const num5 = parseInt(num5Field.value);
+
+    //creiamo un array per ricevere i numeri dell'utente
+    userNumbers.push(num1,num2,num3,num4,num5);
+    
+    // confrontiamo i numeri dell'utente con quelli generati random per vedere quali e quanti ne ha indovinati
+    for(let i = 0; i < randomNumber.length ; i++) {
+        if(userNumbers.includes(randomNumber[i])) {
+            checkedNumber.push(randomNumber[i]);
+        }
+        console.log(checkedNumber);
+        console.log(randomNumber);
+    }
+         
 })
+
+})
+
+
