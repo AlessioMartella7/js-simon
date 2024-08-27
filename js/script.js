@@ -29,23 +29,22 @@ Consigli del giorno:
 //# FUNCTIONS   
 
 // funzione per generare una cella che ospitera i numeri random
-const createCell = content => {
+const createCell = (content ='') => {
     const cell = document.createElement('div');
-    cell.classList = 'cell';
-    cell.appendChild(content)
+    cell.className = 'cell';
+    cell.append(content)
     return cell ;
 }
+
 
 // funzione per creare un numero random tra 1 e 99
 
 const createRandomNumber = (max = 100) => {
+    const numbers =[];
     const number = Math.floor(Math.random() * max ) ;
-    return number;
+    if(!numbers.includes(number)) numbers.push(number);
+    return numbers;
 }
-
-const randomNumber = createRandomNumber();
-console.log('randomNumber', randomNumber);
-
 
 //# preparation phase
 
@@ -62,8 +61,17 @@ const num5Field   = document.getElementById('nmb-5');
 const checkButton = document.getElementById('check-btn');
 const resultField = document.getElementById('');
 
+//varibile per le celle
+let cell;
 
 // creiamo un bottone alla quale aggiungere degli eventi al click:
 playButton.addEventListener('click', () => {
-
+    // creiamo i riquadri per ospitare i numeri
+    for(let i = 0; i < 5; i++ ){     
+    const randomNumnber = createRandomNumber();
+    cell = createCell(randomNumnber);
+    numbersCells.appendChild(cell);
+}
+numbersCells.classList.remove('d-none')
+playButton.disabled = true;
 })
