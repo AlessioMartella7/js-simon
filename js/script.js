@@ -42,13 +42,15 @@ const createCell = (content ='') => {
 const createRandomNumber = (max = 100) => {
     const numbers =[];
     const number = Math.floor(Math.random() * max ) ;
+    //controlliamo che i numeri inseriti nell'array siano tutti diversi
     if(!numbers.includes(number)) numbers.push(number);
     return numbers;
 }
 
-//# preparation phase
+//# Preparation phase
 
 //recupero dal DOM gli elementi
+const cpuField = document.getElementById('cpu-generated')
 const timerField = document.getElementById('timer');
 const numbersCells = document.getElementById('random-nmb-field');
 const playButton = document.getElementById('play-btn');
@@ -61,8 +63,11 @@ const num5Field   = document.getElementById('nmb-5');
 const checkButton = document.getElementById('check-btn');
 const resultField = document.getElementById('');
 
-//varibile per le celle
+//varibili globali
 let cell;
+let seconds = 5;
+
+//# Elaboration phase
 
 // creiamo un bottone alla quale aggiungere degli eventi al click:
 playButton.addEventListener('click', () => {
@@ -71,7 +76,25 @@ playButton.addEventListener('click', () => {
     const randomNumnber = createRandomNumber();
     cell = createCell(randomNumnber);
     numbersCells.appendChild(cell);
-}
-numbersCells.classList.remove('d-none')
-playButton.disabled = true;
+    }
+    // rendiamo visibili i numeri generati
+    numbersCells.classList.remove('d-none')
+    timerField.classList.remove('d-none')
+
+    // disabilitiamo il pulsante start
+    playButton.disabled = true;
+
+    // creiamo un timer di 30 secondi
+    const timer = setInterval(() => {
+    timerField.innerText = seconds--;
+    if(seconds === 0) {
+        clearInterval(timer);
+        //nascondiamo i numeri usciti, timer e bottone
+        cpuField.classList.add('d-none');
+        
+        //facciamo apparire il campo imput per l'utente e il bottone check
+        userNumbersField.classList.remove('d-none');
+    }
+    },1000 );
+
 })
