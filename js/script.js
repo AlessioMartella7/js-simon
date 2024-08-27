@@ -37,12 +37,12 @@ const createCell = (content ='') => {
 }
 
 
-// funzione per creare un numero random tra 1 e 99
+// funzione per creare cinque numeri random 
 
 const createRandomNumber = (max = 100) => {
     const numbers =[];
-    for(let i = 0; i < 5; i++) {
-    const number = Math.floor(Math.random() * max ) ;
+    while(numbers.length < 5) {
+    const number = Math.floor(Math.random() * (max-1) ) +1;
     //controlliamo che i numeri inseriti nell'array siano tutti diversi
     if(!numbers.includes(number)) numbers.push(number);}
     return numbers;
@@ -75,6 +75,10 @@ const randomNumber = createRandomNumber();
 
 // creiamo un bottone alla quale aggiungere degli eventi al click:
 playButton.addEventListener('click', () => {
+  
+    // disabilitiamo il pulsante start
+    playButton.disabled = true;
+
     // creiamo i riquadri per ospitare i numeri
     for(let i = 0; i < 5; i++ ){     
         cell = createCell(randomNumber[i]);
@@ -85,8 +89,6 @@ playButton.addEventListener('click', () => {
     numbersCells.classList.remove('d-none')
     timerField.classList.remove('d-none')
 
-    // disabilitiamo il pulsante start
-    playButton.disabled = true;
 
     // creiamo un timer di 30 secondi
     const timer = setInterval(() => {
@@ -107,6 +109,7 @@ playButton.addEventListener('click', () => {
     // aggiungiamo un evento al form
     form.addEventListener ('submit', event => {
     event.preventDefault();
+    checkButton.disabled = true;
     // raccogliamo i numeri inseriti dall'utente
     const num1 = parseInt(num1Field.value);
     const num2 = parseInt(num2Field.value);
@@ -127,11 +130,10 @@ playButton.addEventListener('click', () => {
         console.log(checkedNumbers);
 
     }
-    
+    //stampo un messaggio in pagina
+
     resultField.innerText = `Hai indovinato ${checkedNumbers.length} numeri: ${checkedNumbers}`;
-    console.log('Numeri controllati:', checkedNumbers);
-    console.log('Numeri random:', randomNumber);
-         
+  
 })
 
 })
