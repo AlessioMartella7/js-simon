@@ -26,6 +26,27 @@ Consigli del giorno:
     // stampare un messagio con il risultato
 
 
+//# FUNCTIONS   
+
+// funzione per generare una cella che ospitera i numeri random
+const createCell = content => {
+    const cell = document.createElement('div');
+    cell.classList = 'cell';
+    cell.appendChild(content)
+    return cell ;
+}
+
+// funzione per creare un numero random tra 1 e 99
+
+const createRandomNumber = (max = 100) => {
+    const number = Math.floor(Math.random() * max ) ;
+    return number;
+}
+
+const randomNumber = createRandomNumber();
+console.log('randomNumber', randomNumber);
+
+
 //# preparation phase
 
 //recupero dal DOM gli elementi
@@ -40,3 +61,9 @@ const num4Field = document.getElementById('nmb-4');
 const num5Field   = document.getElementById('nmb-5');
 const checkButton = document.getElementById('check-btn');
 const resultField = document.getElementById('');
+
+
+// creiamo un bottone alla quale aggiungere degli eventi al click:
+playButton.addEventListener('click', () => {
+
+})
