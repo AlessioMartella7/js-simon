@@ -11,3 +11,16 @@ Consigli del giorno:
 * Dividete in piccoli problemi la consegna.
 * Individuate gli elementi di cui avete bisogno per realizzare il programma.
 * Immaginate la logica come fosse uno snack: "Dati 2 array di numeri, indica quali e quanti numeri ci sono in comune tra i due array" */
+
+// recuperiamo dal DOM gli elementi di cui abbiamo bisogno
+// creiamo un bottone alla quale aggiungere degli eventi al click:
+    // creiamo i riquadri per ospitare i numeri
+    // generiamo 5 numeri random
+    // creiamo un timer di 30 secondi che allo scadere farà:
+        //1 sparire i numeri precedentemente generati
+        //2 apparire gli input per l'utente dove inserire i numeri
+        //3 far sparire il bottone "play"
+// creiamo un secondo bottone per controllare il risultato
+    // raccogliamo i numeri inseriti dall'utente
+    // confrontiamo i numeri dell'utente con quelli generati random per vedere quali e quanti ne ha indovinati
+    // stampare un messagio con il risultato
