@@ -53,7 +53,7 @@ const resultField = document.getElementById('result');
 
 //varibili globali
 let cell;
-let seconds = 5;
+let seconds = 30;
 let userNumbers = [];
 let checkedNumbers = [];
 const randomNumber = createRandomNumber();
